@@ -1,6 +1,12 @@
 // import PropTypes from 'prop-types';
-import { ImageGalleryItem, ImageGalleryItemImage } from '../styled';
+import { ImageGalleryItemEl } from '../styled';
 
-<ImageGalleryItem>
-  <ImageGalleryItemImage src="" alt="" />
-</ImageGalleryItem>;
+const ImageGalleryItem = () => {
+  return (
+    <ImageGalleryItemEl>
+      {/* {this.state.pictures.previewURL}
+      <ImageGalleryItemImage src="" alt="" /> */}
+    </ImageGalleryItemEl>
+  );
+};
+export default ImageGalleryItem;
