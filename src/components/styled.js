@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 
-// Стили компонента Searchbar
+//  Стилі компонента App
+
+// export const AppStyled = styled.App`
+//   display: grid;
+//   grid-template-columns: 1fr;
+//   grid-gap: 16px;
+//   padding-bottom: 24px;
+// `;
+
+//  Стилі компонента Searchbar
 
 export const SearchbarStyle = styled.header`
   top: 0;
@@ -21,7 +30,7 @@ export const SearchbarStyle = styled.header`
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `;
 
-// Стили компонента SearchForm
+// Стилі компонента SearchForm
 
 export const SearchForm = styled.form`
   display: flex;
@@ -47,9 +56,9 @@ export const SearchFormButton = styled.button`
   cursor: pointer;
   outline: none;
 
-  /* &: hover {
+  &:hover {
     opacity: 1;
-  } */
+  }
 `;
 
 export const SearchFormButtonLabel = styled.span`
@@ -73,9 +82,13 @@ export const SearchFormInput = styled.input`
   outline: none;
   padding-left: 4px;
   padding-right: 4px;
+  ::placeholder {
+    font: inherit;
+    font-size: 18px;
+  }
 `;
 
-// Стили компонента ImageGalleryItem
+// Стилі компонента ImageGalleryItem
 
 export const ImageGalleryList = styled.ul`
   display: grid;
@@ -101,9 +114,13 @@ export const ImageGalleryItemImage = styled.img`
   height: 260px;
   object-fit: cover;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    transform: scale(1.03);
+    cursor: zoom-in;
+  }
 `;
 
-// Стили компонента Buton (Load more)
+// Стилі компонента Buton (Load more)
 
 export const Button = styled.button`
   padding: 8px 16px;
@@ -124,11 +141,11 @@ export const Button = styled.button`
   min-width: 180px;
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  &:hover,
+  &:focus {
+    background-color: #303f9f;
+  }
 `;
-
-// export const  = styled.header`
-
-// `;
 
 // export const  = styled.header`
 

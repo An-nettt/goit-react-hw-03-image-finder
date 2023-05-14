@@ -29,34 +29,6 @@ img {
 /*
  * Стили компонента App
  */
-.App {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 16px;
-  padding-bottom: 24px;
-}
-
-/*
- * Стили компонента SearchForm
- */
-
-.SearchForm-input::placeholder {
-  font: inherit;
-  font-size: 18px;
-}
-
-/*
- * Стили компонента ImageGalleryItem
- */
-
-.ImageGalleryItem-image:hover {
-  transform: scale(1.03);
-  cursor: zoom-in;
-}
-
-/*
- * Стили компонента Modal
- */
 
 .Overlay {
   position: fixed;
@@ -74,13 +46,4 @@ img {
 .Modal {
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px);
-}
-
-/*
-* Стили компонента Buton (Load more)
-*/
-
-.Button:hover,
-.Button:focus {
-  background-color: #303f9f;
 }

@@ -1,31 +1,58 @@
+import { Component } from 'react';
+
+import { IconContext } from 'react-icons';
+import { BsSearch } from 'react-icons/bs';
+
 import {
   SearchbarStyle,
   SearchForm,
   SearchFormButton,
-  SearchFormButtonLabel,
   SearchFormInput,
 } from '../styled';
 
-const Searchbar = () => {
-  return (
-    <SearchbarStyle>
-      <SearchForm>
-        <SearchFormButton type="submit">
-          <SearchFormButtonLabel>Search</SearchFormButtonLabel>
-        </SearchFormButton>
+export default class Searchbar extends Component {
+  state = {
+    query: '',
+  };
 
-        <SearchFormInput
-          type="text"
-          autocomplete="off"
-          autofocus
-          placeholder="Search images and photos"
-        />
-      </SearchForm>
-    </SearchbarStyle>
-  );
-};
+  handleQueryChange = event => {
+    this.setState({ query: event.currentTarget.value.toLowerCase() });
+  };
 
-export default Searchbar;
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.onSubmitForm(this.state.query);
+    this.setState({ query: '' });
+  };
+
+  render() {
+    return (
+      <SearchbarStyle>
+        <SearchForm onSubmit={this.handleSubmit}>
+          <SearchFormButton type="submit">
+            <IconContext.Provider
+              value={{
+                color: 'black',
+                size: 17,
+                style: { verticalAlign: 'middle' },
+              }}
+            >
+              <BsSearch />
+            </IconContext.Provider>
+          </SearchFormButton>
+
+          <SearchFormInput
+            type="text"
+            autocomplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            onChange={this.handleQueryChange}
+          />
+        </SearchForm>
+      </SearchbarStyle>
+    );
+  }
+}
 
 // Searchbar.propTypes = {
 //   contactsArrayOf: PropTypes.arrayOf(PropTypes.string),

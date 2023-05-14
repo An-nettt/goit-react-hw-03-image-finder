@@ -1,49 +1,72 @@
 import { Component } from 'react';
+
 import Searchbar from './Searchbar/Searchbar';
-import ImageGallery from './ImageGallery/ImageGallery';
-import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
+// import ImageGallery from './ImageGallery/ImageGallery';
+// import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 import Loader from './Loader/Loader';
+// import { FetchImagesAPI } from './Searchbar/Search';
 
-// import { Wrapper, Title, ContactsTitle } from './styled';
+// import { AppStyled } from '../styled';
 
+// const fetchImagesAPI = new FetchImagesAPI();
 export default class App extends Component {
   state = {
     pictures: null,
-    status: 'idle',
+    loading: false,
+    // status: 'idle',
   };
+
   componentDidMount() {
+    this.setState({ loading: true });
+
     fetch(
-      'https://pixabay.com/api/?q=cat&page=1&key=34753200-909a3cccc831787159f9f5943&image_type=photo&orientation=horizontal&per_page=12'
+      'https://pixabay.com/api/?q=cat&page=1&key=34753200-909a3cccc831787159f9f5943&image_type=photo&orientation=horizontal&per_page=12&id=736877'
     )
       .then(res => res.json())
-      .then(pictures => this.setState({ pictures }));
+      // .then(console.log);
+      .then(pictures => this.setState({ pictures }))
+      .finally(() => this.setState({ loading: false }));
   }
 
-  handleSubmit = event => {
-    event.preventDefault();
-
-    this.props.onSubmit(this.state);
-    event.currentTarget.reset();
+  handleSearchFormSubmit = query => {
+    console.log(query);
   };
 
+  //   this.props.onSubmit(this.state);
+  //   event.currentTarget.reset();
+  // };
+
   render() {
-    const { pictures, status } = this.state;
+    const { loading } = this.state;
 
-    if (status === 'idle') {
-      return;
-    }
+    // if (status === 'idle') {
+    //   return <Searchbar />;
+    // }
 
-    if (status === 'pending') {
-      return Loader;
-    }
+    // if (status === 'pending') {
+    //   return <Loader />;
+    // }
+
+    // if (status === 'rejected') {
+    //   return <h1>error</h1>;
+    // }
+
+    // if (status === 'resolved') {
+    //   return (
+    //     <ImageGallery>
+    //       {pictures && <ImageGalleryItem>{pictures}</ImageGalleryItem>}
+    //     </ImageGallery>
+    //   );
+    // }
 
     return (
       <>
-        <Searchbar onSubmit={this.handleSubmit} />
-        <ImageGallery>
-          {pictures && <ImageGalleryItem>{pictures}</ImageGalleryItem>}
-        </ImageGallery>
+        {loading && <Loader />}
+        <Searchbar onSubmitForm={this.handleSearchFormSubmit} />
+        {/* {pictures && <div>{pictures.hits[0].tags}</div>} */}
       </>
     );
   }
 }
+
+//

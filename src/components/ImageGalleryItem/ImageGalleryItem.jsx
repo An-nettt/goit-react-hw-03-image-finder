@@ -1,11 +1,10 @@
 // import PropTypes from 'prop-types';
-import { ImageGalleryItemEl } from '../styled';
+import { ImageGalleryItemEl, ImageGalleryItemImage } from '../styled';
 
-const ImageGalleryItem = () => {
+const ImageGalleryItem = ({ id, webformatURL }) => {
   return (
     <ImageGalleryItemEl>
-      {/* {this.state.pictures.previewURL}
-      <ImageGalleryItemImage src="" alt="" /> */}
+      <ImageGalleryItemImage src={webformatURL} alt="" id={id} />
     </ImageGalleryItemEl>
   );
 };
