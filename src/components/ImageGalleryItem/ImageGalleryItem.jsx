@@ -2,7 +2,6 @@
 import { ImageGalleryItemEl, ImageGalleryItemImage } from '../styled';
 
 const ImageGalleryItem = ({ img, tags }) => {
-  console.log({ img, tags });
   return (
     <ImageGalleryItemEl>
       <ImageGalleryItemImage src={img} alt={tags} />

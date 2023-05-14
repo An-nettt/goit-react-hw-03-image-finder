@@ -24,6 +24,7 @@ export const SearchbarStyle = styled.header`
   padding-left: 24px;
   padding-top: 12px;
   padding-bottom: 12px;
+  margin-bottom: 10px;
   color: #fff;
   background-color: #3f51b5;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
@@ -122,13 +123,14 @@ export const ImageGalleryItemImage = styled.img`
 
 // Стилі компонента Buton (Load more)
 
-export const Button = styled.button`
+export const ButtonEl = styled.button`
   padding: 8px 16px;
+  margin: 10px auto 10px auto;
   border-radius: 2px;
   background-color: #3f51b5;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
-  display: inline-block;
+  display: block;
   color: #fff;
   border: 0;
   text-decoration: none;
@@ -147,6 +149,30 @@ export const Button = styled.button`
   }
 `;
 
-// export const  = styled.header`
+// Стилі компонента Loader
+export const ThreeDotsEl = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1200;
+`;
+
+export const Modal = styled.div`
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 24px);
+`;
+
+// export const Modal = styled.div`
 
 // `;
