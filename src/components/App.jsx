@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
 import Searchbar from './Searchbar/Searchbar';
-// import ImageGallery from './ImageGallery/ImageGallery';
+import ImageGallery from './ImageGallery/ImageGallery';
 // import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 import Loader from './Loader/Loader';
 // import { FetchImagesAPI } from './Searchbar/Search';
@@ -11,8 +11,9 @@ import Loader from './Loader/Loader';
 // const fetchImagesAPI = new FetchImagesAPI();
 export default class App extends Component {
   state = {
-    pictures: null,
     loading: false,
+    query: '',
+    pictures: null,
     // status: 'idle',
   };
 
@@ -29,12 +30,8 @@ export default class App extends Component {
   }
 
   handleSearchFormSubmit = query => {
-    console.log(query);
+    this.setState({ query });
   };
-
-  //   this.props.onSubmit(this.state);
-  //   event.currentTarget.reset();
-  // };
 
   render() {
     const { loading } = this.state;
@@ -62,7 +59,8 @@ export default class App extends Component {
     return (
       <>
         {loading && <Loader />}
-        <Searchbar onSubmitForm={this.handleSearchFormSubmit} />
+        <Searchbar onSubmit={this.handleSearchFormSubmit} />
+        <ImageGallery query={this.state.query} />
         {/* {pictures && <div>{pictures.hits[0].tags}</div>} */}
       </>
     );

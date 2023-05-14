@@ -1,10 +1,11 @@
 // import PropTypes from 'prop-types';
 import { ImageGalleryItemEl, ImageGalleryItemImage } from '../styled';
 
-const ImageGalleryItem = ({ id, webformatURL }) => {
+const ImageGalleryItem = ({ img, tags }) => {
+  console.log({ img, tags });
   return (
     <ImageGalleryItemEl>
-      <ImageGalleryItemImage src={webformatURL} alt="" id={id} />
+      <ImageGalleryItemImage src={img} alt={tags} />
     </ImageGalleryItemEl>
   );
 };
