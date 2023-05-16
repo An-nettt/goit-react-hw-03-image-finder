@@ -6,10 +6,7 @@ export default class Button extends Component {
     page: 1,
   };
 
-  //   componentDidUpdate(prevProps, prevState) {}
   nextPage = event => {
-    console.log(this.state.page);
-
     this.props.onClick(this.state.page);
   };
 

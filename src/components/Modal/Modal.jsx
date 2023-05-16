@@ -1,7 +1,11 @@
-import { Overlay, Modal } from '../styled';
+import { Overlay, ModalEl } from '../styled';
 
-<Overlay>
-  <Modal>
-    <img src="" alt="" />{' '}
-  </Modal>
-</Overlay>;
+const Modal = ({ largeImageURL, tags }) => {
+  <Overlay>
+    <ModalEl>
+      <img src={largeImageURL} alt={tags} />
+    </ModalEl>
+  </Overlay>;
+};
+
+export default Modal;
