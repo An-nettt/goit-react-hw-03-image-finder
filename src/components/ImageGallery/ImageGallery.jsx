@@ -29,16 +29,15 @@ export default class ImageGallery extends Component {
             return pictures;
           }
         })
-        .then(pictures =>
+        .then(newPictures =>
           this.setState({
             loadMore: true,
-            pictures: pictures.hits,
+            pictures: [...prevState.pictures, ...newPictures.hits],
           })
         )
         .finally(() => {
           this.setState({ isLoading: false });
         });
-    } else {
     }
     if (
       prevProps.query === this.props.query &&
@@ -64,7 +63,6 @@ export default class ImageGallery extends Component {
 
   handleCllickNextButton = page => {
     this.setState({ page: this.state.page + 1 });
-    console.log(this.state.page);
   };
 
   toogleModal = () => {
