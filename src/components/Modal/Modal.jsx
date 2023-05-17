@@ -10,9 +10,15 @@ export default class Modal extends Component {
     });
   }
 
+  handleOverlayClick = event => {
+    if (event.target === event.currentTarget) {
+      this.props.onClose();
+    }
+  };
+
   render() {
     return (
-      <Overlay>
+      <Overlay onClick={this.handleOverlayClick}>
         <ModalEl>{this.props.children}</ModalEl>
       </Overlay>
     );
