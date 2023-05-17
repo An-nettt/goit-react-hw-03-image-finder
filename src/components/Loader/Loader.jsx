@@ -1,5 +1,5 @@
 import { ThreeDots } from 'react-loader-spinner';
-import { ThreeDotsEl } from '../styled';
+import { ThreeDotsEl } from './LoaderStyled';
 
 const Loader = () => {
   return (

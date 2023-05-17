@@ -1,9 +1,10 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { getPictures } from '../../services/getPictures';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 import Loader from '../Loader/Loader';
 
-import { ImageGalleryList } from '../styled';
+import { ImageGalleryList } from './ImageGalleryStyled';
 import Button from 'components/Button/Button';
 
 export default class ImageGallery extends Component {
@@ -92,8 +93,13 @@ export default class ImageGallery extends Component {
   }
 }
 
-// onClick={this.toogleModal} pictures={pictures.hits}
-
-// const { largeImageURL, tags } = this.state.pictures.hits[0];
-
-// {/* <img src={this.state.largeImg} alt={this.state.tags} />; */}
+ImageGallery.propTypes = {
+  pictures: PropTypes.arrayOf(PropTypes.string),
+  id: PropTypes.number.isRequired,
+  img: PropTypes.string.isRequired,
+  largeImg: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  loadMore: PropTypes.bool.isRequired,
+  page: PropTypes.number.isRequired,
+};

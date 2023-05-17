@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { IconContext } from 'react-icons';
 import { BsSearch } from 'react-icons/bs';
@@ -8,7 +9,7 @@ import {
   SearchForm,
   SearchFormButton,
   SearchFormInput,
-} from '../styled';
+} from './SearchbarStyled';
 
 export default class Searchbar extends Component {
   state = {
@@ -58,9 +59,6 @@ export default class Searchbar extends Component {
   }
 }
 
-// Searchbar.propTypes = {
-//   contactsArrayOf: PropTypes.arrayOf(PropTypes.string),
-//   id: PropTypes.string.isRequired,
-//   name: PropTypes.string.isRequired,
-//   number: PropTypes.number.isRequired,
-// };
+Searchbar.propTypes = {
+  query: PropTypes.string.isRequired,
+};

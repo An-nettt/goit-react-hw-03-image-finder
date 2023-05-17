@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import { ButtonEl } from '../styled';
+import PropTypes from 'prop-types';
+import { ButtonEl } from './ButtonStyled';
 
 export default class Button extends Component {
   state = {
@@ -18,3 +19,7 @@ export default class Button extends Component {
     );
   }
 }
+
+Button.propTypes = {
+  page: PropTypes.number.isRequired,
+};
