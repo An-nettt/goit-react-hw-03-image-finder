@@ -5,7 +5,6 @@ import Loader from '../Loader/Loader';
 
 import { ImageGalleryList } from '../styled';
 import Button from 'components/Button/Button';
-import Modal from '../Modal/Modal';
 
 export default class ImageGallery extends Component {
   state = {
@@ -13,7 +12,6 @@ export default class ImageGallery extends Component {
     isLoading: false,
     loadMore: false,
     page: 1,
-    showModal: true,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -65,12 +63,8 @@ export default class ImageGallery extends Component {
     this.setState({ page: this.state.page + 1 });
   };
 
-  toogleModal = () => {
-    this.setState(({ showModal }) => ({ showModal: !showModal }));
-  };
-
   render() {
-    const { pictures, isLoading, loadMore, showModal } = this.state;
+    const { pictures, isLoading, loadMore } = this.state;
 
     if (pictures.total === 0) {
       return;
@@ -80,21 +74,26 @@ export default class ImageGallery extends Component {
       <>
         <ImageGalleryList>
           {pictures &&
-            pictures.map(({ id, webformatURL, tags }) => (
+            pictures.map(({ id, webformatURL, largeImageURL, tags }) => (
               <>
-                <ImageGalleryItem key={id} img={webformatURL} tags={tags} />
+                <ImageGalleryItem
+                  key={id}
+                  img={webformatURL}
+                  largeImg={largeImageURL}
+                  tags={tags}
+                />
               </>
             ))}
         </ImageGalleryList>
         {isLoading && <Loader />}
         {loadMore && <Button onClick={this.handleCllickNextButton} />}
-
-        {showModal && <Modal pictures={pictures.hits} />}
       </>
     );
   }
 }
 
-// fetch(
-//   `https://pixabay.com/api/?q=${this.props.query}&page=${this.state.page}&key=34753200-909a3cccc831787159f9f5943&image_type=photo&orientation=horizontal&per_page=12`
-// )
+// onClick={this.toogleModal} pictures={pictures.hits}
+
+// const { largeImageURL, tags } = this.state.pictures.hits[0];
+
+// {/* <img src={this.state.largeImg} alt={this.state.tags} />; */}

@@ -1,11 +1,23 @@
+import { Component } from 'react';
 import { Overlay, ModalEl } from '../styled';
 
-const Modal = ({ largeImageURL, tags }) => {
-  <Overlay>
-    <ModalEl>
-      <img src={largeImageURL} alt={tags} />
-    </ModalEl>
-  </Overlay>;
-};
+export default class Modal extends Component {
+  nextPage = event => {
+    console.log(event);
+    // this.props.onClick(this.state.largeImg, this.state.tags);
+  };
 
-export default Modal;
+  render() {
+    // const { largeImageURL, tags } = this.state.picture.hits;
+
+    return (
+      <Overlay>
+        <ModalEl>{this.props.children}</ModalEl>
+      </Overlay>
+    );
+  }
+}
+
+// {/*  */}
+// const  = ({ largeImageURL, tags }) => {
+// onClick={this.nextPage}
