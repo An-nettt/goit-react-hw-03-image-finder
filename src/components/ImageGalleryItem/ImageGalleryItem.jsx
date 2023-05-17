@@ -8,9 +8,12 @@ export default class ImageGalleryItem extends Component {
     showModal: false,
   };
 
-  toogleModal = event => {
-    console.log(event);
-    this.setState(({ showModal }) => ({ showModal: !showModal }));
+  openModal = () => {
+    this.setState({ showModal: true });
+  };
+
+  closeModal = () => {
+    this.setState({ showModal: false });
   };
 
   render() {
@@ -18,11 +21,11 @@ export default class ImageGalleryItem extends Component {
     const { img, largeImg, tags } = this.props;
     return (
       <>
-        <ImageGalleryItemEl onClick={this.toogleModal}>
+        <ImageGalleryItemEl onClick={this.openModal}>
           <ImageGalleryItemImage src={img} alt={tags} />
         </ImageGalleryItemEl>
         {showModal && (
-          <Modal>
+          <Modal onClose={this.closeModal}>
             <img src={largeImg} alt={tags} />
           </Modal>
         )}

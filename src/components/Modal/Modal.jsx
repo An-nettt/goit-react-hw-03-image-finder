@@ -2,14 +2,15 @@ import { Component } from 'react';
 import { Overlay, ModalEl } from '../styled';
 
 export default class Modal extends Component {
-  nextPage = event => {
-    console.log(event);
-    // this.props.onClick(this.state.largeImg, this.state.tags);
-  };
+  componentDidMount() {
+    window.addEventListener('keydown', event => {
+      if (event.code === 'Escape') {
+        this.props.onClose();
+      }
+    });
+  }
 
   render() {
-    // const { largeImageURL, tags } = this.state.picture.hits;
-
     return (
       <Overlay>
         <ModalEl>{this.props.children}</ModalEl>
@@ -17,7 +18,3 @@ export default class Modal extends Component {
     );
   }
 }
-
-// {/*  */}
-// const  = ({ largeImageURL, tags }) => {
-// onClick={this.nextPage}
