@@ -23,7 +23,6 @@ export default class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.query !== this.state.query) {
       this.setState({ isLoading: true, pictures: [] });
-      console.log(this.props.query);
 
       getPictures(this.state.query, 1)
         .then(res => res.json())
