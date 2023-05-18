@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Component } from 'react';
 import Modal from 'components/Modal/Modal';
 import {
@@ -37,6 +37,6 @@ export default class ImageGalleryItem extends Component {
   }
 }
 
-ImageGalleryItem.propTypes = {
-  showModal: PropTypes.bool.isRequired,
-};
+// ImageGalleryItem.propTypes = {
+//   showModal: PropTypes.bool.isRequired,
+// };
