@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 import { ImageGalleryList } from './ImageGalleryStyled';
@@ -20,10 +20,10 @@ const ImageGallery = ({ pictures }) => {
 
 export default ImageGallery;
 
-// ImageGallery.propTypes = {
-//   pictures: PropTypes.arrayOf(PropTypes.string),
-//   id: PropTypes.number.isRequired,
-//   img: PropTypes.string.isRequired,
-//   largeImg: PropTypes.string.isRequired,
-//   tags: PropTypes.string.isRequired,
-// };
+ImageGallery.propTypes = {
+  pictures: PropTypes.arrayOf(PropTypes.string),
+  id: PropTypes.number.isRequired,
+  img: PropTypes.string.isRequired,
+  largeImg: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+};
