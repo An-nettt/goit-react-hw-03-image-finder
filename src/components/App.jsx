@@ -11,7 +11,6 @@ import { AppStyled } from './AppStyled';
 export default class App extends Component {
   state = {
     query: '',
-    loadMore: true,
     pictures: [],
     page: 1,
     isLoading: false,
@@ -30,8 +29,8 @@ export default class App extends Component {
         .then(res => res.json())
         .then(newPictures =>
           this.setState({
-            loadMore: true,
             pictures: [...newPictures.hits],
+            page: 1,
           })
         )
         .finally(() => {
@@ -45,12 +44,11 @@ export default class App extends Component {
     ) {
       this.setState({ isLoading: true });
 
-      getPictures(this.props.query, this.state.page)
+      getPictures(this.state.query, this.state.page)
         .then(res => res.json())
 
         .then(newPictures =>
           this.setState({
-            loadMore: true,
             pictures: [...prevState.pictures, ...newPictures.hits],
           })
         )
@@ -70,18 +68,15 @@ export default class App extends Component {
   };
 
   render() {
-    const { pictures, isLoading, loadMore } = this.state;
-    console.log(pictures.length);
-    // if (pictures.length === 0 || pictures.length < 12) {
-    //   this.setState({ loadMore: false });
-    // }
+    const { pictures, isLoading } = this.state;
+    const showButton = pictures.length === 0 || pictures.length < 12;
 
     return (
       <AppStyled>
         <Searchbar onSubmit={this.handleSearchFormSubmit} />
         {isLoading && <Loader />}
         <ImageGallery pictures={pictures} />
-        {loadMore && <Button onClick={this.handleCllickNextButton} />}
+        {showButton ? null : <Button onClick={this.handleCllickNextButton} />}
       </AppStyled>
     );
   }
