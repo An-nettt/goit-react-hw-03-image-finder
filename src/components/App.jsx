@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Notiflix from 'notiflix';
 
 import Searchbar from './Searchbar';
 import Loader from './Loader';
@@ -14,44 +15,39 @@ export default class App extends Component {
     pictures: [],
     page: 1,
     isLoading: false,
+    showButton: false,
+    error: null,
   };
 
-  componentDidMount() {
-    this.setState({ loading: true });
-  }
-
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.query !== this.state.query) {
-      this.setState({ isLoading: true, pictures: [] });
-
-      getPictures(this.state.query, 1)
-        .then(res => res.json())
-        .then(newPictures =>
-          this.setState({
-            pictures: [...newPictures.hits],
-            page: 1,
-          })
-        )
-        .finally(() => {
-          this.setState({ isLoading: false });
-        });
-    }
-
     if (
-      prevProps.query === this.props.query &&
+      prevState.query !== this.state.query ||
       prevState.page !== this.state.page
     ) {
       this.setState({ isLoading: true });
 
       getPictures(this.state.query, this.state.page)
-        .then(res => res.json())
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          return Promise.reject(
+            new Error(
+              `Sorry, but nothing was found for your request ${this.state.query}`
+            )
+          );
+        })
 
-        .then(newPictures =>
+        .then(newPictures => {
+          if (newPictures.total === 0) {
+            Notiflix.Notify.info('Sorry, but nothing was found for your query');
+          }
           this.setState({
             pictures: [...prevState.pictures, ...newPictures.hits],
-          })
-        )
-
+            showButton: this.state.page < Math.ceil(newPictures.totalHits / 12),
+          });
+        })
+        .catch(error => this.setState({ error, showButton: false }))
         .finally(() => {
           this.setState({ isLoading: false });
         });
@@ -59,24 +55,27 @@ export default class App extends Component {
   }
 
   handleSearchFormSubmit = query => {
-    this.setState({ query });
+    this.setState({ page: 1, pictures: [], query });
   };
 
-  handleCllickNextButton = page => {
-    this.setState({ page: this.state.page + 1 });
+  handleCllickNextButton = () => {
+    this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
   render() {
-    const { pictures, isLoading } = this.state;
-    const showButton = pictures.length === 0 || pictures.length < 12;
+    const { pictures, isLoading, showButton, error } = this.state;
 
     return (
       <AppStyled>
         <Searchbar onSubmit={this.handleSearchFormSubmit} />
         {isLoading && <Loader />}
+        {error && <p>{error.message}</p>}
         <ImageGallery pictures={pictures} />
-        {showButton ? null : <Button onClick={this.handleCllickNextButton} />}
+        {showButton && <Button onClick={this.handleCllickNextButton} />}
       </AppStyled>
     );
   }
 }
+
+//
+//
