@@ -42,10 +42,10 @@ export default class App extends Component {
           if (newPictures.total === 0) {
             Notiflix.Notify.info('Sorry, but nothing was found for your query');
           }
-          this.setState({
+          this.setState(prevState => ({
             pictures: [...prevState.pictures, ...newPictures.hits],
             showButton: this.state.page < Math.ceil(newPictures.totalHits / 12),
-          });
+          }));
         })
         .catch(error => this.setState({ error, showButton: false }))
         .finally(() => {
